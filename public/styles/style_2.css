@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+
+    padding: 30px 10px;
+}
+
+.card {
+    max-width: 5000px;
+    margin: auto;
+    color: black;
+    border-radius: 20 px;
+}
+
+p {
+    margin: 10px;
+}
+
+.container .h8 {
+
+    font-size: 50px;
+    font-weight: 1000;
+    text-align: center;
+}
+
+.btn.btn-primary {
+
+    width: 30%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
+    border: none;
+    transition: 0.5s;
+    background-size: 200% auto;
+
+}
+
+
+.btn.btn.btn-primary:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+
+}
+
+
+.btn.btn-primary:hover .fas.fa-arrow-right {
+    transform: translate(15px);
+    transition: transform 0.2s ease-in;
+}
+
+.form-control {
+    color: white;
+    background-color: #223C60;
+    border: 2px solid transparent;
+    height: 60px;
+    padding-left: 15px;
+    vertical-align: middle;
+    width: calc(100% - 30px);
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #0C4160;
+    border: 2px solid #2d4dda;
+    box-shadow: none;
+}
+
+.text {
+    font-size: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.col-6:nth-child(2) {
+    margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+.cvv-container {
+    margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+.alert-container {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 9999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+/* Style for the logout button */
+.logout {
+    position: fixed; /* Position the button relative to the viewport */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.logout button {
+    background-color: #add8e6; /* Light blue background color */
+    color: #ffffff; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+/* Style for the right arrow icon */
+.fas.fa-arrow-right {
+    margin-left: 5px; /* Add some space between text and icon */
+}
+
+.logout-button {
+    position: fixed;
+    top: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    background-color: lightblue;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

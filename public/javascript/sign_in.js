@@ -24,8 +24,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // If all inputs are valid, you can submit the form
         if (isValid) {
-            console.log("Redirecting to questionnaire.html");
-            window.location.href = "questionnaire.html";
+            // Prepare form data for sending
+            const formData = {
+                username: nameInput.value.trim(),
+                password: passInput.value.trim()
+            };
+
+            // Send a POST request to the server
+            fetch('/sign-in', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Determine which page to load based on the data
+                    if (data.message === 'user auth successful') {
+                        // Redirect to questionnaire.html
+                        window.location.href = `/questionnaire.html?username=${data.email}`;
+                    } else {
+                        document.getElementById('error-message').innerText = data.message;
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         }
     });
 

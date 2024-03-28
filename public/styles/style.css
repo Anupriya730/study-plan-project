@@ -62,8 +62,8 @@ label {
     font-weight: bold;
 }
 
-/* Red color only for the asterisk */
-label::after {
+
+.question::after {
     content: " *";
     color: red;
 }
@@ -86,4 +86,15 @@ input[type="submit"] {
     color: red;
     font-size: 14px;
     display: none; /* Initially hide error messages */
+}
+
+.logout-button {
+    position: fixed;
+    top: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    background-color: lightblue;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
