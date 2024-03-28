@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="styles/style_2.css">
+
+</head>
+<body>
+
+
+<div class="container p-0">
+    <button class="logout-button" onclick="logout()">Log Out</button>
+    <div class="card px-4">
+        <p class="h8 py-3">Payment Details</p>
+        <form action="/payment" method="POST" id="payment">
+        </form>
+        <div class="row gx-3">
+            <div class="col-12">
+                <div class="d-flex flex-column">
+                    <p class="text mb-1">Person Name</p>
+                    <input class="form-control mb-3" type="text" id="person_name" placeholder="Name">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex flex-column">
+                    <p class="text mb-1">Card Number</p>
+                    <input class="form-control mb-3" type="text" id="card_number" placeholder="1234 5678 4356 7830">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="d-flex flex-column">
+                    <p class="text mb-1">Expiry</p>
+                    <input class="form-control mb-3" type="text" id="expiry" placeholder="MM/YYYY">
+                </div>
+            </div>
+            <div class="col-6 cvv-container">
+                <div class="d-flex flex-column">
+                    <p class="text mb-1">CVV/CVC</p>
+                    <input class="form-control mb-3 pt-2" type="password" id="cvv" placeholder="***">
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary mb-3" onclick="validatePayment()">Pay $199 <span class="fas fa-arrow-right"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Container -->
+<div class="alert-container" id="alertContainer"></div>
+
+
+<script src="javascript/payment.js"></script>
+<script>
+    function logout() {
+        // Redirect user to login page
+        window.location.href = '/sign_in_page.html'; // Redirect to the login page
+
+    }
+</script>
+</body>
+</html>

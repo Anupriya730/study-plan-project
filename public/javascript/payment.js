@@ -27,7 +27,7 @@ function validatePayment() {
     const expiryMonth = parseInt(expiryParts[0], 10);
     const expiryYear = parseInt(expiryParts[1], 10);
 
-    if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+    if ((expiry === "") || (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth))) {
         alertMessages.push('Please enter a valid expiry date that is greater than or equal to the current date.');
     }
 

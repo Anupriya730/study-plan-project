@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Form</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .not-bold {
+            font-weight: normal;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<button class="logout-button" onclick="logout()">Log Out</button>
+<img id="header-image" src="images/Questionnnaire.png" alt="Questionnaire Image">
+<form id="questionnaire-form" action="/questionnaire-form" method="post">
+    <div class="error-message"></div>
+    <h1>Questionnaire</h1>
+    <span id="username"></span>
+    <label id="primary_goal" class="question">What is your primary goal id this study plan?<span
+            class="error-message"></span></label>
+    <label class="not-bold"><input type="radio" name="primary_goal" value="improve_understanding" required> Improve
+        understanding
+        of key
+        concepts</label>
+    <label class="not-bold"><input type="radio" name="primary_goal" value="prepare_exam" required> Prepare id a specific
+        exam or
+        certification</label>
+    <label class="not-bold"><input type="radio" name="primary_goal" value="enhance_skills" required> Enhance skills id
+        career
+        advancement</label>
+
+    <span class="error-message"></span>
+
+    <div class="checkbox-group">
+        <label id="interested_topics" class="question">Which specific subjects or topics are you interested in
+            studying?</label>
+        <label for="science_math" class="not-bold">
+            <input type="checkbox" id="science_math" name="subjects_of_interest" value="science_math"> Science and
+            Mathematics
+        </label>
+        <label for="humanities_social" class="not-bold">
+            <input type="checkbox" id="humanities_social" name="subjects_of_interest" value="humanities_social">
+            Humanities and Social Sciences
+        </label>
+        <label for="tech_computer" class="not-bold">
+            <input type="checkbox" id="tech_computer" name="subjects_of_interest" value="tech_computer"> Technology
+            and Computer Science
+        </label>
+    </div>
+
+    <span class="error-message"></span>
+
+    <label id="confidence_level" class="question">On a scale of 1 to 10, how confident are you in your current knowledge
+        of these
+        subjects?</label>
+    <label class="not-bold"><input type="radio" name="confidence_level" value="1-3" required> 1-3 (Low
+        confidence)</label>
+    <label class="not-bold"><input type="radio" name="confidence_level" value="4-6" required> 4-6 (Moderate confidence)</label>
+    <label class="not-bold"><input type="radio" name="confidence_level" value="7-8" required> 7-8 (High
+        confidence)</label>
+    <label class="not-bold"><input type="radio" name="confidence_level" value="9-10" required> 9-10 (Expert
+        level)</label>
+
+    <span class="error-message"></span>
+
+    <div class="checkbox-group">
+        <label id="learning_style" class="question">What is your preferred learning style?</label>
+        <label class="not-bold"><input type="checkbox" name="learning_style" value="visual"> Visual</label>
+        <label class="not-bold"><input type="checkbox" name="learning_style" value="auditory"> Auditory</label>
+        <label class="not-bold"><input type="checkbox" name="learning_style" value="hands-on"> Hands-on</label>
+    </div>
+    <span class="error-message"></span>
+
+    <label id="study_time" class="question">How much time can you dedicate to studying each day or week?</label>
+    <label class="not-bold"><input type="radio" name="time_dedication" value="less_than_1_hour" required> Less than 1 hour
+        per
+        day</label>
+    <label class="not-bold"><input type="radio" name="time_dedication" value="1-2_hours" required> 1-2 hours per day</label>
+    <label class="not-bold"><input type="radio" name="time_dedication" value="3-4_hours" required> 3-4 hours per day</label>
+    <label class="not-bold"><input type="radio" name="time_dedication" value="more_than_4_hours" required> More than 4 hours
+        per
+        day</label>
+
+    <span class="error-message"></span>
+
+    <label id="deadlines" class="question">Are there any specific deadlines or milestones you need to meet?</label>
+    <label class="not-bold"><input type="radio" name="has_deadlines" value="yes" required> Yes</label>
+    <label class="not-bold"><input type="radio" name="has_deadlines" value="no" required> No</label>
+
+    <span class="error-message"></span>
+
+    <label id="prior_experience" class="question">Do you have any prior experience or background knowledge in the
+        subjects you want
+        to study?</label>
+    <label class="not-bold"><input type="radio" name="has_prior_experience" value="yes" required> Yes</label>
+    <label class="not-bold"><input type="radio" name="has_prior_experience" value="no" required> No</label>
+
+    <span class="error-message"></span>
+
+    <div class="checkbox-group">
+        <label id="study_resources" class="question">What type of resources or materials do you prefer to use id
+            studying?</label>
+        <label class="not-bold"><input type="checkbox" name="study_materials" value="textbooks"> Textbooks</label>
+        <label class="not-bold"><input type="checkbox" name="study_materials" value="online_courses"> Online
+            courses</label>
+        <label class="not-bold"><input type="checkbox" name="study_materials" value="videos"> Videos</label>
+    </div>
+    <span class="error-message"></span>
+    <div class="checkbox-group">
+        <label id="challenges" class="question">What challenges or obstacles do you anticipate facing during your study
+            sessions?</label>
+        <label class="not-bold"><input type="checkbox" name="anticipated_challenges" value="time_constraints"> Time
+            constraints</label>
+        <label class="not-bold"><input type="checkbox" name="anticipated_challenges" value="difficulty_understanding"> Difficulty
+            understanding
+            complex
+            concepts</label>
+        <label class="not-bold"><input type="checkbox" name="anticipated_challenges" value="lack_of_motivation"> Lack of
+            motivation</label>
+    </div>
+    <span class="error-message"></span>
+    <div class="checkbox-group">
+        <label id="progress_tracking" class="question">How do you prefer to track your progress?</label>
+        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="journaling"> Journaling</label>
+        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="online_platforms"> Online
+            platforms</label>
+        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="self-assessment_quizzes">
+            Self-assessment quizzes</label>
+        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="others"> Others</label>
+    </div>
+    <span class="error-message"></span>
+    <label class="not-bold"><input type="submit" value="Submit"></label>
+</form>
+
+<script src="javascript/questionnaire.js"></script>
+<script>
+    function logout() {
+        // Redirect user to login page
+        window.location.href = '/sign_in_page.html'; // Redirect to the login page
+
+    }
+</script>
+</body>
+</html>
