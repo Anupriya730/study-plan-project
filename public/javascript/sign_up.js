@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('register-form');
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent the form from submitting
 
         // Validation checks
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
 
             // Send a POST request to the server
-            fetch('/submit-form', {
+            fetch('/signup-form', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,12 +58,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: JSON.stringify(formData)
             })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    console.log(data);
+                    if (data.message === 'User already exists') {
+                        document.getElementById('error-message').innerText = data.message;
+                    } else {
+                        window.location.href = '/sign_in_page.html';
+                    }
+                })
                 .catch((error) => {
                     console.error('Error:', error);
                 });
 
-            window.location.href = '/sign_in_page.html';
         }
 
     });

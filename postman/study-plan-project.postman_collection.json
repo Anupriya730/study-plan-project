@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "1648eea3-a8e4-4d09-979e-d1249d729347",
+		"name": "study-plan-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29520437"
+	},
+	"item": [
+		{
+			"name": "signup-form",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const randomFirstName = pm.variables.replaceIn('{{$randomFirstName}}').toLowerCase();\r",
+							"\r",
+							"pm.environment.set(\"firstName\", randomFirstName);\r",
+							"console.log(\"Random first name saved:\", randomFirstName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"postman\",\r\n    \"email\": \"{{firstName}}@anupriya.com\",\r\n    \"password\": \"test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/signup-form",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup-form"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign-in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{firstName}}@anupriya.com\",\r\n    \"password\": \"test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionnnaire",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"primary_goal\": \"prepare_exam\",\r\n  \"subjects_of_interest\": \"humanities_social\",\r\n  \"confidence_level\": \"9-10\",\r\n  \"learning_style\": \"hands-on\",\r\n  \"time_dedication\": \"more_than_4_hours\",\r\n  \"has_deadlines\": \"yes\",\r\n  \"has_prior_experience\": \"no\",\r\n  \"study_materials\": \"textbooks\",\r\n  \"anticipated_challenges\": \"time_constraints\",\r\n  \"progress_tracking\": \"journaling\",\r\n  \"email\": \"test123@tester.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/questionnaire-form?username={{firstName}}@tester.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"questionnaire-form"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{firstName}}@tester.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
