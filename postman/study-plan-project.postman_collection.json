@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1648eea3-a8e4-4d09-979e-d1249d729347",
+		"_postman_id": "1e8d16d9-d24b-4702-ba8a-0d0aee36aad4",
 		"name": "study-plan-project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29520437"
+		"_exporter_id": "10429746"
 	},
 	"item": [
 		{
@@ -20,6 +20,27 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should have status 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should be JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should contain the correct message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"message\", \"user registered successfully\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -27,7 +48,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"postman\",\r\n    \"email\": \"{{firstName}}@anupriya.com\",\r\n    \"password\": \"test123\"\r\n}",
+					"raw": "{\r\n    \"name\": \"anu\",\r\n    \"email\": \"{{firstName}}@anupriya.com\",\r\n    \"password\": \"test123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,13 +98,47 @@
 			"response": []
 		},
 		{
-			"name": "questionnnaire",
+			"name": "questionnnaire-happy-path",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"primary_goal\": \"prepare_exam\",\r\n  \"subjects_of_interest\": \"humanities_social\",\r\n  \"confidence_level\": \"9-10\",\r\n  \"learning_style\": \"hands-on\",\r\n  \"time_dedication\": \"more_than_4_hours\",\r\n  \"has_deadlines\": \"yes\",\r\n  \"has_prior_experience\": \"no\",\r\n  \"study_materials\": \"textbooks\",\r\n  \"anticipated_challenges\": \"time_constraints\",\r\n  \"progress_tracking\": \"journaling\",\r\n  \"email\": \"test123@tester.com\"\r\n}",
+					"raw": "{\r\n    \"primary_goal\": \"prepare_exam\",\r\n    \"subjects_of_interest\": \"humanities_social\",\r\n    \"confidence_level\": \"9-10\",\r\n    \"learning_style\": \"hands-on\",\r\n    \"time_dedication\": \"more_than_4_hours\",\r\n    \"has_deadlines\": \"yes\",\r\n    \"has_prior_experience\": \"no\",\r\n    \"study_materials\": \"textbooks\",\r\n    \"anticipated_challenges\": \"time_constraints\",\r\n    \"progress_tracking\": \"journaling\",\r\n    \"email\": \"test123@tester.com\",\r\n    \"subjects_scores\": {\r\n        \"math\": 85,\r\n        \"science\": 78,\r\n        \"english\": 92,\r\n        \"history\": 30,\r\n        \"geography\": 74,\r\n        \"art\": 90\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/questionnaire-form?username={{firstName}}@tester.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"questionnaire-form"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{firstName}}@tester.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionnnaire-negative-test-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"primary_goal\": \"prepare_exam\",\r\n    \"subjects_of_interest\": \"humanities_social\",\r\n    \"confidence_level\": \"9-10\",\r\n    \"learning_style\": \"hands-on\",\r\n    \"time_dedication\": \"more_than_4_hours\",\r\n    \"has_deadlines\": \"yes\",\r\n    \"has_prior_experience\": \"no\",\r\n    \"study_materials\": \"textbooks\",\r\n    \"anticipated_challenges\": \"time_constraints\",\r\n    \"progress_tracking\": \"journaling\",\r\n    \"email\": \"\",\r\n    \"subjects_scores\": {\r\n        \"math\": 85,\r\n        \"science\": 78,\r\n        \"english\": 92,\r\n        \"history\": 30,\r\n        \"geography\": 74,\r\n        \"art\": 90\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
