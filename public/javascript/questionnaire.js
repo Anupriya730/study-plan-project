@@ -26,18 +26,28 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        let formData = new FormData(form);
-        let jsonObject = {};
-        for (const [key, value] of formData.entries()) {
-            if (jsonObject[key] !== undefined) {
-                if (!(jsonObject[key] instanceof Array)) {
-                    jsonObject[key] = [jsonObject[key]];
-                }
-                jsonObject[key].push(value);
-            } else {
-                jsonObject[key] = value;
+        const formData = new FormData(event.target);
+        const jsonObject = {
+            primary_goal: formData.get('primary_goal'),
+            subjects_of_interest: formData.get('subjects_of_interest'),
+            confidence_level: formData.get('confidence_level'),
+            learning_style: formData.get('learning_style'),
+            time_dedication: formData.get('time_dedication'),
+            has_deadlines: formData.get('has_deadlines'),
+            has_prior_experience: formData.get('has_prior_experience'),
+            study_materials: formData.get('study_materials'),
+            anticipated_challenges: formData.get('anticipated_challenges'),
+            progress_tracking: formData.get('progress_tracking'),
+            email: formData.get('email'),
+            subjects_scores: {
+                math: parseInt(formData.get('subjects_scores[math]')),
+                science: parseInt(formData.get('subjects_scores[science]')),
+                english: parseInt(formData.get('subjects_scores[english]')),
+                history: parseInt(formData.get('subjects_scores[history]')),
+                geography: parseInt(formData.get('subjects_scores[geography]')),
+                art: parseInt(formData.get('subjects_scores[art]'))
             }
-        }
+        };
 
         jsonObject['email'] = retrievedUsername;
 
@@ -51,14 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                if (data.message === 'Form submitted successfully!') {
-                    // Redirect to questionnaire.html
-                    window.location.href = `/payment.html?username=${data.email}`;
-                    data.message = 'Form may be submitted again';
-                } else {
-                    document.getElementById('error-message').innerText = data.message;
-                }
+                localStorage.setItem('studyPlan', JSON.stringify(data.plan));
+                window.location.href = '/study_plan.html';
             })
             .catch((error) => {
                 console.error('Error:', error);

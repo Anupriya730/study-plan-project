@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Form</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/study_plan.css">
+</head>
+<body>
+
+<button class="logout-button" onclick="logout()">Log Out</button>
+<img id="header-image" src="images/Questionnnaire.png" alt="Questionnaire Image">
+
+<div id="studyPlanContainer">
+    <h1>Your Preparation Plan</h1>
+    <div id="studyPlan"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const plan = JSON.parse(localStorage.getItem('studyPlan'));
+        if (plan) {
+            displayStudyPlan(plan);
+        }
+    });
+
+    function displayStudyPlan(plan) {
+        let table = '<table><tr><th>Subject</th><th>Study Hours per Day</th></tr>';
+        plan.forEach(item => {
+            table += `<tr><td>${item.subject}</td><td>${item.studyHours} hours</td></tr>`;
+        });
+        table += '</table>';
+        document.getElementById('studyPlan').innerHTML = table;
+    }
+</script>
+</body>
+</html>

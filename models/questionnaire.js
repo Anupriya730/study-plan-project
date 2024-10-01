@@ -44,8 +44,35 @@ const questionnaireSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    subjects_scores: {
+        math: {
+            type: Number,
+            required: true
+        },
+        science: {
+            type: Number,
+            required: true
+        },
+        english: {
+            type: Number,
+            required: true
+        },
+        history: {
+            type: Number,
+            required: true
+        },
+        geography: {
+            type: Number,
+            required: true
+        },
+        art: {
+            type: Number,
+            required: true
+        }
     }
 }, { collection: 'questionnaire' });
+
 
 
 const Questionnaire = mongoose.model('Questionnaire', questionnaireSchema);
