@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
             has_prior_experience: formData.get('has_prior_experience'),
             study_materials: formData.get('study_materials'),
             anticipated_challenges: formData.get('anticipated_challenges'),
-            progress_tracking: formData.get('progress_tracking'),
             email: formData.get('email'),
             subjects_scores: {
                 math: parseInt(formData.get('subjects_scores[math]')),

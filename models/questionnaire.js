@@ -36,10 +36,6 @@ const questionnaireSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
-    progress_tracking: {
-        type: Array,
-        required: true
-    },
     email: {
         type: String,
         required: true,
