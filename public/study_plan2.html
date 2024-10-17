@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Form</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/study_plan.css">
+</head>
+<body>
+
+<button class="logout-button" onclick="logout()">Log Out</button>
+<img id="header-image" src="images/Questionnnaire.png" alt="Questionnaire Image">
+
+<div id="studyPlanContainer">
+    <h1>Your Weekly Preparation Plan</h1>
+    <div id="studyPlan"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const plan = JSON.parse(localStorage.getItem('studyPlan'));
+        const weeks = 2; // Example: 2 weeks, adjust this value based on user input
+        if (plan) {
+            displayStudyPlan(plan, weeks);
+        }
+    });
+
+    function displayStudyPlan(plan, weeks) {
+        const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        let studyPlanHTML = '';
+
+        // Loop through each week
+        for (let week = 1; week <= weeks; week++) {
+            studyPlanHTML += `<h2>Week ${week}</h2>`;
+            studyPlanHTML += '<table><tr><th>Day</th><th>Subject</th><th>Study Hours</th></tr>';
+
+            // Loop through each day of the week
+            for (let day = 0; day < daysOfWeek.length; day++) {
+                const subjectIndex = (week - 1) * daysOfWeek.length + day;
+                const subject = plan[subjectIndex % plan.length]; // Cycle through subjects
+
+                // Assign study hours per day (adjust logic as needed)
+                studyPlanHTML += `
+                    <tr>
+                        <td>${daysOfWeek[day]}</td>
+                        <td>${subject.subject}</td>
+                        <td>${subject.studyHours} hours</td>
+                    </tr>
+                `;
+            }
+
+            studyPlanHTML += '</table>';
+        }
+
+        document.getElementById('studyPlan').innerHTML = studyPlanHTML;
+    }
+</script>
+
+</body>
+</html>

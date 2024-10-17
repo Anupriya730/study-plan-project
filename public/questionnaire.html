@@ -130,14 +130,9 @@
             motivation</label>
     </div>
     <span class="error-message"></span>
-    <div class="checkbox-group">
-        <label id="progress_tracking" class="question">How do you prefer to track your progress?</label>
-        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="journaling"> Journaling</label>
-        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="online_platforms"> Online
-            platforms</label>
-        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="self-assessment_quizzes">
-            Self-assessment quizzes</label>
-        <label class="not-bold"><input type="checkbox" name="progress_tracking" value="others"> Others</label>
+    <div class="question-group">
+        <label id="time_available" class="question">How many weeks do you have available for preparation?</label>
+        <input type="number" name="time_available" min="1" max="52" required>
     </div>
     <span class="error-message"></span>
     <label class="not-bold"><input type="submit" value="Submit"></label>
