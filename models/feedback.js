@@ -12,7 +12,7 @@ const feedbackSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true, // Removes any extra spaces
-        minlength: 5 // Ensures that a meaningful comment is provided
+        minlength: 1 // Ensures that a meaningful comment is provided
     },
     createdAt: {
         type: Date,

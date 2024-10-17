@@ -107,9 +107,10 @@ app.post('/questionnaire-form', async (req, res) => {
             const newQuestionnaire = new Questionnaire(req.body);
             await newQuestionnaire.save();
         }
+        const weeks = req.body.time_available;
         const scores = req.body.subjects_scores;
         const plan = generatePreparationPlan(scores);
-        return res.status(201).json({ plan });
+        return res.status(201).json({ plan, weeks });
 
     } catch (error) {
         console.error('Error saving form data:', error);

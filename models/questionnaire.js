@@ -41,6 +41,10 @@ const questionnaireSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    time_available: {
+        type: Number,
+        required: true,
+    },
     subjects_scores: {
         math: {
             type: Number,
@@ -67,8 +71,7 @@ const questionnaireSchema = new mongoose.Schema({
             required: true
         }
     }
-}, { collection: 'questionnaire' });
-
+}, {collection: 'questionnaire'});
 
 
 const Questionnaire = mongoose.model('Questionnaire', questionnaireSchema);

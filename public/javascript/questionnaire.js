@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             has_prior_experience: formData.get('has_prior_experience'),
             study_materials: formData.get('study_materials'),
             anticipated_challenges: formData.get('anticipated_challenges'),
+            time_available: formData.get('time_available'),
             email: formData.get('email'),
             subjects_scores: {
                 math: parseInt(formData.get('subjects_scores[math]')),
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 localStorage.setItem('studyPlan', JSON.stringify(data.plan));
+                localStorage.setItem('numberOfWeeks', data.weeks);
                 window.location.href = '/study_plan.html';
             })
             .catch((error) => {

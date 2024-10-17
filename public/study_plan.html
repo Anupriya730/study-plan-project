@@ -23,7 +23,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const plan = JSON.parse(localStorage.getItem('studyPlan'));
-        const weeks = 2; // Example: 2 weeks, adjust this value based on user input
+        const weeks = Number(localStorage.getItem('numberOfWeeks'))
         if (plan) {
             displayStudyPlan(plan, weeks);
         }
