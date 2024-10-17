@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="styles/style_3.css">
+
+</head>
+<body>
+<img id="header-image" src="images/feedback.png" alt="Feedback Image">
+
+<form action="#" id="feedbackForm" onsubmit="return validateForm()">
+    <h2>Feedback Form</h2>
+
+    <label for="satisfaction">How satisfied are you with our platform? </label>
+    <div class="option-container">
+        <input type="radio" id="1" name="satisfaction" value="1">
+        <label for="1">1  Very Dissatisfied</label>
+
+        <input type="radio" id="2" name="satisfaction" value="2">
+        <label for="2">2  Dissatisfied</label>
+
+        <input type="radio" id="3" name="satisfaction" value="3">
+        <label for="3">3  Neutral</label>
+
+        <input type="radio" id="4" name="satisfaction" value="4">
+        <label for="4">4  Satisfied</label>
+
+        <input type="radio" id="5" name="satisfaction" value="5">
+        <label for="5">5  Very Satisfied</label>
+    </div><br><br>
+
+    <label for="comments">Could you kindly provide feedback on your experience using our platform? Ensuring your satisfaction and convenience is our top priority? </label>
+    <textarea id="comments" name="comments" placeholder="Type your feedback here..."></textarea>
+
+    <input type="submit" value="Submit">
+</form>
+<script src="javascript/feedback.js"></script>
+</body>
+</html>
