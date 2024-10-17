@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const User = require("./models/user");
 const Questionnaire = require("./models/questionnaire");
+const Feedback = require("./models/feedback");
 const bcrypt = require('bcrypt');
 const app = express();
 
@@ -13,7 +14,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to the MongoDB server
-mongoose.connect('mongodb+srv://anupriya7996:lg4frphdQJKYqRX3@cluster0.5vnmcrj.mongodb.net/study-plans?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://anupriya7996:TJYCbli4ighZkFCp@cluster0.5vnmcrj.mongodb.net/study-plans?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
@@ -32,7 +33,6 @@ app.post('/signup-form', (req, res) => {
             if (existingUser) {
                 // User found
                 console.error('Error Registering User');
-                res.set('Content-Type', 'application/json');
                 return res.status(409).json({message: 'User already exists'});
             } else {
                 bcrypt.genSalt(10, (err, salt) => {
@@ -49,7 +49,6 @@ app.post('/signup-form', (req, res) => {
                         newUser.save()
                             .then(() => {
                                 console.log('User saved successfully!');
-                                res.set('Content-Type', 'application/json');
                                 return res.status(201).json({message: 'user registered successfully'});
                             })
                             .catch((err) => {
@@ -62,7 +61,6 @@ app.post('/signup-form', (req, res) => {
         .catch(err => {
             // Error handling
             console.error('Error finding user by email:', err);
-            res.set('Content-Type', 'application/json');
             res.status(500).json({message: 'Internal Server Error'});
         });
 
@@ -119,6 +117,25 @@ app.post('/questionnaire-form', async (req, res) => {
     }
 
 });
+
+app.post('/submit-feedback', async (req, res) => {
+    try {
+        // Create a new feedback document
+        const feedbackData = new Feedback(req.body);
+
+        // Save the feedback data to the database
+        await feedbackData.save();
+
+        // Send success response
+        res.status(201).json({ message: 'Feedback submitted successfully' });
+    } catch (error) {
+        console.error('Error saving feedback:', error);
+
+        // Send error response
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 app.post('/payment', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'thankyou.html'));
