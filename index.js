@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to the MongoDB server
-mongoose.connect('mongodb+srv://anupriya7996:eLSPjxnwvWwe73SG@cluster0.5vnmcrj.mongodb.net/study-plans?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://anupriya7996:lg4frphdQJKYqRX3@cluster0.5vnmcrj.mongodb.net/study-plans?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
@@ -32,6 +32,7 @@ app.post('/signup-form', (req, res) => {
             if (existingUser) {
                 // User found
                 console.error('Error Registering User');
+                res.set('Content-Type', 'application/json');
                 return res.status(409).json({message: 'User already exists'});
             } else {
                 bcrypt.genSalt(10, (err, salt) => {
@@ -48,6 +49,7 @@ app.post('/signup-form', (req, res) => {
                         newUser.save()
                             .then(() => {
                                 console.log('User saved successfully!');
+                                res.set('Content-Type', 'application/json');
                                 return res.status(201).json({message: 'user registered successfully'});
                             })
                             .catch((err) => {
@@ -60,6 +62,7 @@ app.post('/signup-form', (req, res) => {
         .catch(err => {
             // Error handling
             console.error('Error finding user by email:', err);
+            res.set('Content-Type', 'application/json');
             res.status(500).json({message: 'Internal Server Error'});
         });
 
@@ -100,15 +103,15 @@ app.post('/questionnaire-form', async (req, res) => {
             // Save it to the database
             existingQuestionnaire.set(req.body);
             await existingQuestionnaire.save();
-
-            return res.status(200).json({message: 'Form submitted successfully!', email: req.body.email});
         }
         else
         {
             const newQuestionnaire = new Questionnaire(req.body);
             await newQuestionnaire.save();
-            return res.status(201).json({ message: 'Form submitted successfully!', email: req.body.email });
         }
+        const scores = req.body.subjects_scores;
+        const plan = generatePreparationPlan(scores);
+        return res.status(201).json({ plan });
 
     } catch (error) {
         console.error('Error saving form data:', error);
@@ -124,3 +127,32 @@ app.post('/payment', (req, res) => {
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+function generatePreparationPlan(scores) {
+    let plan = [];
+    for (const subject in scores) {
+        const score = scores[subject];
+        const studyHours = getStudyHours(score);
+        plan.push({ subject, studyHours });
+    }
+    return plan;
+}
+
+function getStudyHours(score) {
+    if (score < 40) {
+        return 4; // Needs significant improvement
+    } else if (score < 50) {
+        return 3.5; // Needs a lot of attention
+    } else if (score < 60) {
+        return 3; // Needs improvement
+    } else if (score < 70) {
+        return 2.5; // Needs some attention
+    } else if (score < 80) {
+        return 2; // Doing okay, but can improve
+    } else if (score < 90) {
+        return 1.5; // Doing well
+    } else {
+        return 1; // Excellent, minimal attention needed
+    }
+}
+
